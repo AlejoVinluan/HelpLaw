@@ -1,0 +1,7 @@
+.container-one {
+    display: flex;
+    height: 75rem;
+    font-family: Inter;
+    justify-content: center;
+    align-content: center;
+}

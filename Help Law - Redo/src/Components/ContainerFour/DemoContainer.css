@@ -1,0 +1,16 @@
+.demo-container {
+    height: 1020px;
+    width: 1000px;
+    background-color: lightgoldenrodyellow;
+    align-self: center;
+    justify-content: center;
+    display: inline-flex;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+
+
+.playground {
+    font-family: Inter;
+}

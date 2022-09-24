@@ -1,0 +1,9 @@
+.anchor-home {
+    text-decoration: none;
+    color: orange;
+}
+
+.anchor-home:visited{
+    text-decoration: none;
+    color: orange;
+}

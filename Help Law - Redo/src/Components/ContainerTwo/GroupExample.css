@@ -1,0 +1,13 @@
+.card-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-items: center;
+    padding: 5%;
+    padding-left: 18%;
+}
+
+.card {
+    padding: 0 2%;
+    margin: 0 120px;
+}
