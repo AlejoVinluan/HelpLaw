@@ -1,0 +1,24 @@
+.nav-button {
+  margin: 0 1rem;
+  float: right;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  background-color: white;
+  color: orange;
+  font-size: 1rem;
+  font-family: Montserrat;
+}
+
+.nav-button:hover {
+  color: orange;
+  border-color: initial;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: orange;
+  transition: border-left-color 0.1s linear 0s,
+    border-top-color 0.1s linear 0.07s, border-right-color 0.1s linear 0.14s;
+  cursor: pointer;
+}
