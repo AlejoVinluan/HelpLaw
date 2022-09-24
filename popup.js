@@ -64,18 +64,6 @@ async function dictionaryApi(query) {
   }
 }
 
-document.getElementById('test').addEventListener("click",handleTranslate);
-function handleTranslate(){
-  let selectedOption = document.getElementById('selectLanguage').value
-  // https://translate.google.com/?sl=en&tl=es&text=hello&op=translate
-  let baseUrl = 'https://translate.google.com/?sl=en&tl='
-  baseUrl += selectedOption
-  baseUrl += '&text='
-  baseUrl += word
-  baseUrl += '&op=translate'
-  window.open(baseUrl, "_blank")
-}
-
 document.getElementById("prev").addEventListener("click", handlePrevious);
 document.getElementById("next").addEventListener("click", handleNext);
 
