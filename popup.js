@@ -2,7 +2,7 @@ let query = { active: true, currentWindow: true };
 
 chrome.tabs.query(query, gotTabs);
 function gotTabs(tabs) {
-  chrome.tabs.sendMessage(tabs[0].id, {txt: "_"}, function (response) {
+  chrome.tabs.sendMessage(tabs[0].id, {txt: "helplaw"}, function (response) {
     if (!response) {
       document.getElementById("phonetic").innerHTML = "HelpLaw";
       document.getElementById("example").innerHTML = "Defining and translating judicial words";
