@@ -1,20 +1,23 @@
 {
-    "name": "Getting Started Example",
-    "description": "Build an Extension!",
-    "version": "1.0",
+    "name": "HelpLaw",
+    "description": "Unpacking the judicial confusion!",
     "manifest_version": 3,
-    "background": {
-      "service_worker": "background.js"
-    },
-    "permissions": ["storage"],
+    "version": "0.1.0",
+    "permissions": ["tabs", "activeTab"],
+    "host_permissions": ["*://*/*"],
     "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "64": "/images/icon-64.png"
-      },
-      "icons": {
-        "64": "/images/icon-64.png"
-      }
-    }
-  }
-  
+        "default_icon": {
+            "64": "./images/icon-64.png"
+        },
+        "default_title": "HelpLaw",
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+          "matches": [
+            "<all_urls>"
+          ],
+          "js": ["content.js"]
+        }
+      ]
+}
