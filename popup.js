@@ -1,22 +1,47 @@
 let query = { active: true, currentWindow: true };
+let lawTermsJson
+fetch('/lawTerms.json')
+  .then(res => res.json())
+  .then(json => {
+    lawTermsJson = json
+  })
 
 chrome.tabs.query(query, gotTabs);
 function gotTabs(tabs) {
   chrome.tabs.sendMessage(tabs[0].id, {txt: "helplaw"}, function (response) {
     if (!response) {
       document.getElementById("phonetic").innerHTML = "HelpLaw";
-      document.getElementById("example").innerHTML = "Defining and translating judicial words";
+        document.getElementById("example").innerHTML = "Defining and translating judicial words";
     } else if (response.sent_msg === "NO_TEXT") {
       document.getElementById("error").innerHTML = "Please highlight a word, then click the extension";
     } else {
-      dictionary(response.sent_msg.replace(/[^a-zA-Z ]/g, ""));
+      dictionaryApi(response.sent_msg.replace(/\s/g, "").replace(/[^a-zA-Z ]/g, ""));
     }
   });
 }
 
 let wordef, word, phonetic,pos,defin, example, sourceurl, index = 0, indlimit;
 
-async function dictionary(query) {
+async function lawTermsJsonLookup(query){
+  word = query
+  jsonQuery = word.toLowerCase()
+  defin = lawTermsJson
+  let wordSplit = word.split(" ")
+  let searchEnd;
+  for(let term in wordSplit){
+    searchEnd += term
+    searchEnd += "+"
+  }
+  sourceurl = "https://www.google.com/search?q=" + searchEnd 
+
+  document.getElementById(
+    "word"
+  ).innerHTML = `${word} <a href=${sourceurl} class="searchanchor" target="_blank"><img class="searchsvg" title="Google Search" src = "./images/search-icon.png" alt="google"/><a>`;
+  document.getElementById("definition").innerHTML = defin ? defin : "Unable to get definition of item.";
+  document.getElementById("example").innerHTML = example ? `Example: ${example}` : "";
+}
+
+async function dictionaryApi(query) {
   let url = `https://api.dictionaryapi.dev/api/v2/entries/en/${query}`;
   let response = await fetch(url);
   wordef = await response.json();
@@ -63,7 +88,7 @@ function setValues() {
 
   document.getElementById(
     "word"
-  ).innerHTML = `${word} <a href=${sourceurl} class="searchanchor" target="_blank"><img class="searchsvg" title="read more" src = "../assets/searchonweb.svg" alt="read more"/><a>`;
+  ).innerHTML = `${word} <a href=${sourceurl} class="searchanchor" target="_blank"><img class="searchsvg" title="read more" src = "./images/wiki-icon.svg.png" alt="read more"/><a>`;
   document.getElementById("phonetic").innerHTML = `${phonetic}  (${pos})`;
   document.getElementById("definition").innerHTML = defin;
   if (example) {

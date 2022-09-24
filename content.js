@@ -3,7 +3,7 @@ window.addEventListener("mouseup", handleSelection);
 var highlightedText;
 
 function handleSelection() {
-  highlightedText = window.getSelection().toString().replace(/\s/g, "");
+  highlightedText = window.getSelection().toString();
 }
 
 chrome.runtime.onMessage.addListener(gotMessage);
