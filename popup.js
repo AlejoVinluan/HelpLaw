@@ -78,6 +78,15 @@ function handleTranslate(){
   window.open(baseUrl, "_blank")
 }
 
+const synth = window.speechSynthesis
+const utterThis = new SpeechSynthesisUtterance(inputTxt.value)
+
+document.getElementById('ttsButton').addEventListener('click',handleTts)
+function handleTts(){
+  synth.speak(utterThis)
+}
+
+
 document.getElementById("prev").addEventListener("click", handlePrevious);
 document.getElementById("next").addEventListener("click", handleNext);
 

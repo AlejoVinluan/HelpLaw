@@ -1,6 +1,6 @@
 {
-    "name": "HelpLaw",
-    "description": "Unpacking the judicial confusion!",
+    "name": "AccessiLaw",
+    "description": "Making the Legal System accessible.",
     "manifest_version": 3,
     "version": "0.1.0",
     "permissions": ["tabs", "activeTab"],
