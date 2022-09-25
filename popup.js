@@ -6,6 +6,8 @@ fetch('/lawTerms.json')
     lawTermsJson = json
   })
 
+let originalMessage
+
 chrome.tabs.query(query, gotTabs);
 function gotTabs(tabs) {
   chrome.tabs.sendMessage(tabs[0].id, {txt: "helplaw"}, function (response) {
@@ -15,6 +17,7 @@ function gotTabs(tabs) {
     } else if (response.sent_msg === "NO_TEXT") {
       document.getElementById("error").innerHTML = "Please highlight a word, then click the extension";
     } else {
+      originalMessage = response.sent_msg
       dictionaryApi(response.sent_msg.replace(/\s/g, "").replace(/[^a-zA-Z ]/g, ""));
     }
   });
@@ -70,7 +73,7 @@ function handleTranslate(){
   let baseUrl = 'https://translate.google.com/?sl=en&tl='
   baseUrl += selectedOption
   baseUrl += '&text='
-  baseUrl += word
+  baseUrl += originalMessage
   baseUrl += '&op=translate'
   window.open(baseUrl, "_blank")
 }
